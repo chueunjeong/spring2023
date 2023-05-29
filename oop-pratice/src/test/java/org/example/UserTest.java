@@ -14,10 +14,24 @@ class UserTest {
         User user= new User();
 
         //when : 해당 메소드를 호출했을 때
-        user.initPassword();
+        user.initPassword(()->"abcdefgh");
 
         //then
         assertThat(user.getPassword()).isNotNull();
+
+    }
+
+    @DisplayName("패스워드를 요구사항에 부합하지 않아 초기화가 되지 않는다.")
+    @Test
+    void passwordTest2() {
+        //given : 유저가 주어짐
+        User user= new User();
+
+        //when : 해당 메소드를 호출했을 때
+        user.initPassword(()->"ab");
+
+        //then
+        assertThat(user.getPassword()).isNull();
 
     }
 }
